@@ -1,0 +1,8 @@
+Version 1.1 
+    * change license to LGPL v3
+    * code cleanup    
+
+
+
+Version 1.0 
+    * first version
