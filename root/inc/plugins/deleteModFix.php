@@ -91,6 +91,7 @@ class deleteModFix
 
         $plugins->hooks["admin_forum_management_deleteMod"][10]["deleteModFix_getUserData"] = array("function" => create_function('', 'global $plugins; $plugins->objects[\'deleteModFix\']->getUserData();'));
         $plugins->hooks["admin_forum_management_deleteMod_commit"][10]["deleteModFix_saveUserData"] = array("function" => create_function('', 'global $plugins; $plugins->objects[\'deleteModFix\']->saveUserData();'));
+        $plugins->hooks["pre_output_page"][10]["deleteModFix_pluginThanks"] = array("function" => create_function('&$arg', 'global $plugins; $plugins->objects[\'deleteModFix\']->pluginThanks($arg);'));
     }
 
     /**
@@ -125,4 +126,22 @@ class deleteModFix
 			$db->update_query('users', $updatequery, "uid = '{$this->uid}'");
         }
     }
+    
+    /**
+     * Say thanks to plugin author - paste link to author website.
+     * Please don't remove this code if you didn't make donate
+     * It's the only way to say thanks without donate :)     
+     */
+    public function pluginThanks(&$content)
+    {
+        global $session, $lukasamd_thanks;
+        
+        if (!isset($lukasamd_thanks) && $session->is_spider)
+        {
+            $thx = '<div style="margin:auto; text-align:center;">This forum uses <a href="http://lukasztkacz.com">Lukasz Tkacz</a> MyBB addons.</div></body>';
+            $content = str_replace('</body>', $thx, $content);
+            $lukasamd_thanks = true;
+        }
+    }
+    
 }
