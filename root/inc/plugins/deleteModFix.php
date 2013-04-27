@@ -53,7 +53,7 @@ function deleteModFix_info()
         'website' => 'http://lukasztkacz.com',
         'author' => 'Lukasz Tkacz',
         'authorsite' => 'http://lukasztkacz.com',
-        'version' => '1.1',
+        'version' => '1.2',
         'guid' => 'e2dfc9ee1770650353625a3d395c6f20',
         'compatibility' => '16*'
     );
@@ -89,8 +89,8 @@ class deleteModFix
     {
         global $plugins;
 
-        $plugins->hooks["admin_forum_management_deleteMod"][10]["deleteModFix_getUserData"] = array("function" => create_function('', 'global $plugins; $plugins->objects[\'deleteModFix\']->getUserData();'));
-        $plugins->hooks["admin_forum_management_deleteMod_commit"][10]["deleteModFix_saveUserData"] = array("function" => create_function('', 'global $plugins; $plugins->objects[\'deleteModFix\']->saveUserData();'));
+        $plugins->hooks["admin_forum_management_deletemod"][10]["deleteModFix_getUserData"] = array("function" => create_function('', 'global $plugins; $plugins->objects[\'deleteModFix\']->getUserData();'));
+        $plugins->hooks["admin_forum_management_deletemod_commit"][10]["deleteModFix_saveUserData"] = array("function" => create_function('', 'global $plugins; $plugins->objects[\'deleteModFix\']->saveUserData();'));
         $plugins->hooks["pre_output_page"][10]["deleteModFix_pluginThanks"] = array("function" => create_function('&$arg', 'global $plugins; $plugins->objects[\'deleteModFix\']->pluginThanks($arg);'));
     }
 
